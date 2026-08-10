@@ -1,38 +1,31 @@
 {
   "issue": "NET-4081",
   "title": "[A3-F4] Broker kalicilastirma",
-  "last_batch": "2026-08-10T16:30:00Z",
+  "last_updated": "2026-08-10T17:55:00Z",
+  "recovery_run": "cb4f7e8a-d35b-4d6e-9c6f-7a8f5dd04977",
+  "recovery_by": "Technical Officer",
   "phases": {
     "discovery": "completed",
     "model_code": "completed",
     "views_xml": "completed",
     "external_ids_hook": "completed",
     "cron_handling": "completed",
-    "deploy": "in_progress",
+    "git_push": "completed",
+    "deploy": "ready_for_deploy",
     "verify": "pending",
     "db_cleanup": "pending"
   },
-  "findings": {
-    "cron_1890_1892": "NOT_FOUND_IN_DB - 61 crons exist, none broker-related. Placeholder XML created.",
-    "fields": "All 14 x_broker/x_bbn/x_tbs fields exist DB-ONLY on product.template. All 5 x_ fields on product.supplierinfo. Python models match.",
-    "x_product_brand": "ir.model ID=3525 exists DB-ONLY. x_name/x_slug/x_logo fields exist. No views/actions/menus in DB (fresh from module).",
-    "views_9404_9409": "All 6 views exist DB-ONLY. Module XML matches DB arch content exactly. Hook deletes old DB-only orphans after module views created.",
-    "view_9300": "Brand/MPN form view exists DB-ONLY. Added to cleanup list.",
-    "x_mpn": "Field existed DB-ONLY but was missing from Python model. ADDED."
+  "recovery_findings": {
+    "previous_failure": "hermes_gateway timed out at 600s. Odoo Engineer likely tried to deploy to Odoo from this PC but networkser.odoo.com is UNREACHABLE from this machine (connection timeout).",
+    "git_status": "RESOLVED. Repo Evginho/networkser_broker exists and is PUBLIC. Latest push 2026-08-10T15:50:15Z. Both master and main branches synced.",
+    "git_credential": "RESOLVED. Windows Credential Manager stores valid GitHub PAT (x-access-token). git push works without GH_TOKEN env var.",
+    "odooconnectivity": "BLOCKED. networkser.odoo.com times out from this PC. Odoo deployment MUST happen from a machine that can reach Odoo (e.g., Odoo.sh shell, or operator's browser).",
+    "module_code": "VERIFIED COMPLETE. 15 files, 3 commits, all syntax-checked. Includes hooks.py for post-install external ID creation and view cleanup."
   },
-  "module_structure": [
-    "__init__.py",
-    "__manifest__.py",
-    "hooks.py (post_init_hook: external IDs + view cleanup)",
-    "models/__init__.py",
-    "models/product_template.py (x_broker/x_bbn/x_tbs/x_mpn/x_product_brand_id)",
-    "models/product_supplierinfo.py (x_vendor_lead/x_transit/x_offer_source/x_lead_total)",
-    "models/x_product_brand.py (x_name/x_slug/x_logo)",
-    "security/ir.model.access.csv",
-    "views/product_template_views.xml (Broker Channels + Brand/MPN form)",
-    "views/product_supplierinfo_views.xml (6 views: lead time + offer source)",
-    "views/x_product_brand_views.xml (tree/form/search + action + menu)",
-    "data/cron_jobs.xml (placeholder, commented out)"
-  ],
-  "deploy_notes": "Module ready for upload. Zip and install via Odoo Apps → Upload Module. Post-install hook will create external IDs and clean up old views."
+  "deploy_instructions": {
+    "option_a_web_ui": "1. Create zip: cd networkser_broker && git archive -o /tmp/networkser_broker.zip HEAD . 2. Operator opens https://networkser.odoo.com → Apps → Upload Module → select zip → Install",
+    "option_b_odoo_sh": "On Odoo.sh shell: cd ~/src && git clone https://github.com/Evginho/networkser_broker.git && odoo-sh addon install networkser_broker --database=evginaldemir-nwr-networkser-main-29326103",
+    "option_c_admin_key": "If an admin-scoped API key becomes available, use XML-RPC ir.module.module to install programmatically"
+  },
+  "next_action": "Deploy module to Odoo via one of the options above. After install: run hooks.py post-install (auto-creates external IDs, cleans up DB-only view orphans). Then: watchdog verification → stage green → DB cleanup."
 }
