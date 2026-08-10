@@ -33,4 +33,5 @@ Custom model:
     'application': False,
     'auto_install': False,
     'license': 'LGPL-3',
+    'post_init_hook': '_create_external_ids',
 }

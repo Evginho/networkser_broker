@@ -1,0 +1,38 @@
+{
+  "issue": "NET-4081",
+  "title": "[A3-F4] Broker kalicilastirma",
+  "last_batch": "2026-08-10T16:30:00Z",
+  "phases": {
+    "discovery": "completed",
+    "model_code": "completed",
+    "views_xml": "completed",
+    "external_ids_hook": "completed",
+    "cron_handling": "completed",
+    "deploy": "in_progress",
+    "verify": "pending",
+    "db_cleanup": "pending"
+  },
+  "findings": {
+    "cron_1890_1892": "NOT_FOUND_IN_DB - 61 crons exist, none broker-related. Placeholder XML created.",
+    "fields": "All 14 x_broker/x_bbn/x_tbs fields exist DB-ONLY on product.template. All 5 x_ fields on product.supplierinfo. Python models match.",
+    "x_product_brand": "ir.model ID=3525 exists DB-ONLY. x_name/x_slug/x_logo fields exist. No views/actions/menus in DB (fresh from module).",
+    "views_9404_9409": "All 6 views exist DB-ONLY. Module XML matches DB arch content exactly. Hook deletes old DB-only orphans after module views created.",
+    "view_9300": "Brand/MPN form view exists DB-ONLY. Added to cleanup list.",
+    "x_mpn": "Field existed DB-ONLY but was missing from Python model. ADDED."
+  },
+  "module_structure": [
+    "__init__.py",
+    "__manifest__.py",
+    "hooks.py (post_init_hook: external IDs + view cleanup)",
+    "models/__init__.py",
+    "models/product_template.py (x_broker/x_bbn/x_tbs/x_mpn/x_product_brand_id)",
+    "models/product_supplierinfo.py (x_vendor_lead/x_transit/x_offer_source/x_lead_total)",
+    "models/x_product_brand.py (x_name/x_slug/x_logo)",
+    "security/ir.model.access.csv",
+    "views/product_template_views.xml (Broker Channels + Brand/MPN form)",
+    "views/product_supplierinfo_views.xml (6 views: lead time + offer source)",
+    "views/x_product_brand_views.xml (tree/form/search + action + menu)",
+    "data/cron_jobs.xml (placeholder, commented out)"
+  ],
+  "deploy_notes": "Module ready for upload. Zip and install via Odoo Apps → Upload Module. Post-install hook will create external IDs and clean up old views."
+}

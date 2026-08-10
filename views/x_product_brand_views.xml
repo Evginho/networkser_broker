@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-  <!-- ==== x_product_brand model external ID ==== -->
-  <record id="model_x_product_brand" model="ir.model">
-    <field name="name">Product Brand</field>
-    <field name="model">x_product_brand</field>
-    <field name="state">manual</field>
-  </record>
-
   <!-- ==== Tree (list) view ==== -->
   <record id="x_product_brand_tree" model="ir.ui.view">
     <field name="name">x_product_brand.tree</field>

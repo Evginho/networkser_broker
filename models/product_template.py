@@ -51,6 +51,9 @@ class ProductTemplate(models.Model):
         'x_product_brand',
         string='Brand',
     )
+    x_mpn = fields.Char(
+        string='MPN / Manufacturer Part Number',
+    )
 
     @api.depends('x_broker_lead_min', 'x_broker_lead_max')
     def _compute_broker_lead_text(self):

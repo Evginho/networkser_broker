@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!--
+  ==== Cron Jobs 1890 + 1892 ====
+  
+  These cron IDs were referenced in NET-4081 scope but were NOT FOUND in the
+  production database (2026-08-10 verification). 61 crons exist; none match
+  broker/bbs/tbs patterns and none have IDs near 1890/1892.
+  
+  Placeholder definitions below. Activate and configure when the business
+  requirements for broker sync automation are clarified.
+  -->
+
+  <!--
+  <record id="cron_broker_sync_bbn" model="ir.cron">
+    <field name="name">Broker: BrokerBin Sync</field>
+    <field name="model_id" ref="model_product_template"/>
+    <field name="state">code</field>
+    <field name="code">model._brokerbin_sync()</field>
+    <field name="interval_number">6</field>
+    <field name="interval_type">hours</field>
+    <field name="numbercall">-1</field>
+    <field name="active" eval="False"/>
+  </record>
+
+  <record id="cron_broker_sync_tbs" model="ir.cron">
+    <field name="name">Broker: TheBrokerSite Sync</field>
+    <field name="model_id" ref="model_product_template"/>
+    <field name="state">code</field>
+    <field name="code">model._tbs_sync()</field>
+    <field name="interval_number">6</field>
+    <field name="interval_type">hours</field>
+    <field name="numbercall">-1</field>
+    <field name="active" eval="False"/>
+  </record>
+  -->
+
+</odoo>
