@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- ==== x_product_brand model external ID ==== -->
+  <record id="model_x_product_brand" model="ir.model">
+    <field name="name">Product Brand</field>
+    <field name="model">x_product_brand</field>
+    <field name="state">manual</field>
+  </record>
+
+  <!-- ==== Tree (list) view ==== -->
+  <record id="x_product_brand_tree" model="ir.ui.view">
+    <field name="name">x_product_brand.tree</field>
+    <field name="model">x_product_brand</field>
+    <field name="type">tree</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="x_name"/>
+        <field name="x_slug"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- ==== Form view ==== -->
+  <record id="x_product_brand_form" model="ir.ui.view">
+    <field name="name">x_product_brand.form</field>
+    <field name="model">x_product_brand</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="x_name"/>
+            <field name="x_slug"/>
+            <field name="x_logo" widget="image"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- ==== Search view ==== -->
+  <record id="x_product_brand_search" model="ir.ui.view">
+    <field name="name">x_product_brand.search</field>
+    <field name="model">x_product_brand</field>
+    <field name="type">search</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="x_name"/>
+        <field name="x_slug"/>
+      </search>
+    </field>
+  </record>
+
+  <!-- ==== Action window ==== -->
+  <record id="action_x_product_brand" model="ir.actions.act_window">
+    <field name="name">Product Brands</field>
+    <field name="res_model">x_product_brand</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="o_view_nocontent_smiling_face">
+        Create a new product brand
+      </p>
+    </field>
+  </record>
+
+  <!-- ==== Menu item (under Sales / Products) ==== -->
+  <menuitem id="menu_x_product_brand"
+            name="Product Brands"
+            parent="sale.product_menu_catalog"
+            sequence="20"
+            action="action_x_product_brand"/>
+
+</odoo>

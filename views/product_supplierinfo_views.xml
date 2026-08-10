@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- ===== supplierinfo list view 2 (purchase) ===== -->
+
+  <!-- Broker lead time fields after delay -->
+  <record id="supplierinfo_list_broker_lead_1070" model="ir.ui.view">
+    <field name="name">product.supplierinfo.list.broker.lead.1070</field>
+    <field name="model">product.supplierinfo</field>
+    <field name="type">list</field>
+    <field name="inherit_id" ref="purchase.product_supplierinfo_tree_view2"/>
+    <field name="priority" eval="99"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='delay']" position="after">
+          <field name="x_vendor_lead_days" optional="show"/>
+          <field name="x_transit_min" optional="show"/>
+          <field name="x_transit_max" optional="show"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Offer source before delay -->
+  <record id="supplierinfo_offer_source_9405" model="ir.ui.view">
+    <field name="name">product.supplierinfo.offer.source.9405</field>
+    <field name="model">product.supplierinfo</field>
+    <field name="type">list</field>
+    <field name="inherit_id" ref="purchase.product_supplierinfo_tree_view2"/>
+    <field name="priority" eval="100"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='delay']" position="before">
+          <field name="x_offer_source" optional="show"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Lead total after delay -->
+  <record id="supplierinfo_lead_total" model="ir.ui.view">
+    <field name="name">product.supplierinfo.lead.total</field>
+    <field name="model">product.supplierinfo</field>
+    <field name="type">list</field>
+    <field name="inherit_id" ref="purchase.product_supplierinfo_tree_view2"/>
+    <field name="priority" eval="101"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='delay']" position="after">
+          <field name="x_lead_total" optional="show"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- ===== supplierinfo list view (product) ===== -->
+
+  <!-- Broker lead time fields after delay -->
+  <record id="supplierinfo_list_broker_lead_481" model="ir.ui.view">
+    <field name="name">product.supplierinfo.list.broker.lead.481</field>
+    <field name="model">product.supplierinfo</field>
+    <field name="type">list</field>
+    <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+    <field name="priority" eval="99"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='delay']" position="after">
+          <field name="x_vendor_lead_days" optional="show"/>
+          <field name="x_transit_min" optional="show"/>
+          <field name="x_transit_max" optional="show"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+  <!-- Offer source before delay -->
+  <record id="supplierinfo_offer_source_9406" model="ir.ui.view">
+    <field name="name">product.supplierinfo.offer.source.9406</field>
+    <field name="model">product.supplierinfo</field>
+    <field name="type">list</field>
+    <field name="inherit_id" ref="product.product_supplierinfo_tree_view"/>
+    <field name="priority" eval="100"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//field[@name='delay']" position="before">
+          <field name="x_offer_source" optional="show"/>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>

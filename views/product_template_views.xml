@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- Form view: Broker Channels tab on product.template form -->
+  <record id="product_template_form_broker_channels" model="ir.ui.view">
+    <field name="name">product.template.form.broker.channels</field>
+    <field name="model">product.template</field>
+    <field name="type">form</field>
+    <field name="inherit_id" ref="product.product_template_only_form_view"/>
+    <field name="priority" eval="99"/>
+    <field name="arch" type="xml">
+      <data>
+        <xpath expr="//notebook" position="inside">
+          <page string="Broker Channels" name="broker_channels">
+            <div class="alert alert-info" role="alert">
+              These fields describe how this product is listed on the brokerage
+              platforms BrokerBin and TheBrokerSite only. They do not affect
+              webshop pricing, purchasing or stock. BrokerBin prices are always
+              USD, TheBrokerSite prices are EUR. Leave the EUR price empty when
+              the listing is published as CALL.
+            </div>
+            <separator string="Listing text as shown on the platforms"/>
+            <field name="x_broker_desc" nolabel="1" class="w-100"
+                   placeholder="In Stock ready to ship. New in Box. Short technical description."/>
+            <group>
+              <group string="Listing">
+                <field name="x_broker_status"/>
+                <field name="x_broker_qty"/>
+                <field name="x_broker_price"/>
+                <field name="x_broker_price_eur"/>
+                <field name="x_broker_lead_text"/>
+              </group>
+              <group string="Channels">
+                <field name="x_bbn_listed"/>
+                <field name="x_bbn_last_sync"/>
+                <field name="x_tbs_listed"/>
+                <field name="x_tbs_last_sync"/>
+              </group>
+            </group>
+            <group string="Lead time source (edit here)" col="4">
+              <field name="x_broker_lead_min" string="Min days"/>
+              <field name="x_broker_lead_max" string="Max days"/>
+            </group>
+          </page>
+        </xpath>
+      </data>
+    </field>
+  </record>
+
+</odoo>
