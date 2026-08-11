@@ -10,6 +10,7 @@
   external ID to the existing record, not create a new one.
   -->
   <record id="model_x_product_brand" model="ir.model" forcecreate="False">
+    <field name="name" eval="'x_product_brand'"/>
     <field name="model" eval="'x_product_brand'"/>
   </record>
 </odoo>
