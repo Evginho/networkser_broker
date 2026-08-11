@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!--
+  External ID for x_product_brand ir.model.
+  Required BEFORE ir.model.access.csv loads, since the CSV references
+  model_x_product_brand as the target model for access rules.
+  
+  forcecreate="False": the ir.model record is auto-created by Odoo when the
+  Python model (x_product_brand) is loaded. We only need to attach the
+  external ID to the existing record, not create a new one.
+  -->
+  <record id="model_x_product_brand" model="ir.model" forcecreate="False">
+    <field name="model" eval="'x_product_brand'"/>
+  </record>
+</odoo>

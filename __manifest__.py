@@ -24,6 +24,7 @@ Custom model:
     'website': 'https://networkser.com',
     'depends': ['product', 'purchase', 'sale'],
     'data': [
+        'data/x_product_brand_data.xml',
         'security/ir.model.access.csv',
         'views/product_template_views.xml',
         'views/product_supplierinfo_views.xml',
